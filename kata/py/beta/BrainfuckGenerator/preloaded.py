@@ -43,6 +43,3 @@ def brainfuck_interpreter(program):
                 program_counter = return_stack.pop()
     return output
 
-
-print(brainfuck_interpreter("++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>."))
-
