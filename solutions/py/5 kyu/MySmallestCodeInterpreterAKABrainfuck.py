@@ -1,14 +1,15 @@
 #!/usr/bin/python3
 
-def brainfuck_interpreter(program):
+# https://www.codewars.com/kata/526156943dfe7ce06200063e/
+def brain_luck(code, program_input):
     program_counter = 0
     tape_index = 0
     tape = [0] * 30000
     return_stack = []
     output = ""
 
-    while program_counter < len(program):
-        match program[program_counter]:
+    while program_counter < len(code):
+        match code[program_counter]:
             case ">":
                 tape_index += 1
                 program_counter += 1
@@ -25,7 +26,9 @@ def brainfuck_interpreter(program):
                 output = output + chr(tape[tape_index])
                 program_counter += 1
             case ",":
-                raise NotImplementedError("Input isn't implemented, I'm not making it that easy :^)")
+                print(program_input)
+                tape[tape_index] = program_input[0]
+                program_input = program_input[1:]
             case "[":
                 if tape[tape_index] != 0:
                     return_stack.append(program_counter)
@@ -34,9 +37,9 @@ def brainfuck_interpreter(program):
                     bracket_count = 1
                     while bracket_count:
                         program_counter += 1
-                        if program[program_counter] == "[":
+                        if code[program_counter] == "[":
                             bracket_count += 1
-                        elif program[program_counter] == "]":
+                        elif code[program_counter] == "]":
                             bracket_count -= 1
                     program_counter += 1
             case "]":
